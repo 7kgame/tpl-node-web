@@ -1,0 +1,19 @@
+{
+  "name": "tpl-node-web",
+  "version": "1.0.0",
+  "description": "nodejs web项目脚手架工程",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/7kgame/tpl-node-web.git"
+  },
+  "author": "cyij2006@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/7kgame/tpl-node-web/issues"
+  },
+  "homepage": "https://github.com/7kgame/tpl-node-web#readme"
+}

@@ -1,0 +1,27 @@
+node-web:
+  data:
+    #mongo: // one connection
+      # url: mongodb://localhost:27017
+      #auth:
+        #  user: ''
+        #  password: ''
+    mongo:
+      -
+        bean: primary
+        url: mongodb://localhost:27017
+        poolSize: 10
+     #-
+        #url: mongodb://localhost:27017
+    mysql:
+      -
+        bean: primary
+        host: 127.0.0.1
+        port: 3306
+        user: root
+        password: ''
+        connectionLimit: 10
+    redis:
+      -
+        bean: primary
+        host: 127.0.0.1
+        port: 6379

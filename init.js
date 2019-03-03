@@ -1,4 +1,4 @@
 
-module.exports = function (projectName, projectPath, templatePath) {
-  console.log(projectPath)
+module.exports = function (projectName, projectPath, metas) {
+  console.log(projectPath, 'init script')
 }

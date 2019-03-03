@@ -1,25 +1,42 @@
 {
-  "name": "{{ name }}",
-  "version": "{{ version }}",
-  "description": "{{ description }}",
-  "author": "{{ author }}",
+  "name": "<%= name %>",
+  "version": "<%= version %>",
+  "description": "<%= description %>",
+  "author": "<%= author %>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "build": "node build/build.js"
+    "tsc": "tsc",
+    "tsc-watch": "tsc -w",
+    "build": "gulp build",
+    "start": "node build/index.js",
+    "setup": "npm install",
+    "watch": "nodemon --watch build/ build/index.js"
   },
+  "license": "MIT",
   "dependencies": {
+    "qk-web": "0.0.1"
   },
   "devDependencies": {
+    "@types/node": "^10.x.x",
+    "eslint": "^5.12.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "gulp": "^4.0.0",
+    "gulp-env": "^0.4.0",
+    "gulp-mocha": "^6.0.0",
+    "gulp-rimraf": "^0.2.2",
+    "gulp-shell": "^0.6.5",
+    "gulp-tslint": "^8.1.3",
+    "node-dev": "^3.1.3",
+    "nodemon": "^1.18.9",
+    "tsc": "^1.20150623.0",
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.2",
+    "typescript-eslint-parser": "^21.0.2"
   },
   "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+    "node": ">= 10.0.0",
+    "npm": ">= 6.0.0"
+  }
 }

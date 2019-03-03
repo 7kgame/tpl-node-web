@@ -1,52 +1,50 @@
 module.exports = {
-  "prompts": {
-    "name": {
-      "type": "string",
-      "required": true,
-      "message": "Project name"
+  prompts: {
+    name: {
+      message: "Project name"
     },
-    "title": {
-      "type": "string",
-      "required": true,
-      "message": "title of index.html"
+    version: {
+      message: "Project version",
+      default: "1.0.0"
     },
-    "description": {
-      "type": "string",
-      "required": false,
-      "message": "Project description",
-      "default": "A Vue.js project"
+    description: {
+      message: "Project description",
+      default: "nodejs web framework"
     },
-    "version": {
-      "type": "string",
-      "message": "Project version",
-      "default": "1.0.0"
+    author: {
+      message: "Author"
     },
-    "author": {
-      "type": "string",
-      "message": "Author"
+    host: {
+      message: "set host for the httpserver",
+      default: 'localhost'
     },
-    "dependency": {
-      "type": "list",
-      "message": "vue and iview dependency mode",
-      "choices": [
+    port: {
+      type: "nubmer",
+      message: "set port for the httpserver",
+      default: 3000
+    },
+    repositories: {
+      type: "checkbox",
+      message: "select repositories",
+      choices: [
         {
-          "name": "totaly import",
-          "value": "totaly",
-          "short": "totaly"
+          name: "mongodb",
+          //checked: true
         },
-        /*
         {
-          "name": "import by need",
-          "value": "byneed",
-          "short": "byneed"
+          name: "mysql",
         },
-        */
         {
-          "name": "import by cdn",
-          "value": "cdn",
-          "short": "cdn"
+          name: "redis",
         },
       ]
     }
-  }
+  },
+  include: [
+    '*.json',
+    '*.js',
+    '*.ts',
+  ],
+  exclude: [
+  ]
 }

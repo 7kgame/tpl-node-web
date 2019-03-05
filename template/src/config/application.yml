@@ -7,6 +7,7 @@ node-web:
         #  password: ''
     mongo:
       -
+        dao: jweb-mongo
         bean: primary
         url: mongodb://localhost:27017
         poolSize: 10
@@ -14,6 +15,7 @@ node-web:
         #url: mongodb://localhost:27017
     mysql:
       -
+        dao: jweb-mysql
         bean: primary
         host: 127.0.0.1
         port: 3306
@@ -22,6 +24,7 @@ node-web:
         connectionLimit: 10
     redis:
       -
+        dao: jweb-redis
         bean: primary
         host: 127.0.0.1
         port: 6379

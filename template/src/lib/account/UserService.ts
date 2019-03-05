@@ -10,12 +10,13 @@ export default class UserService {
   constructor () {
     console.log('new UserService');
   }
-  public hello (): string {
-    let res = this.userRepository.hello();
-    this.userRepository.helloRedis();
-    this.userRepository.helloMongo();
-    console.log(res);
-    return 'hello userService';
+
+  public async hello () {
+    let res1 = this.userRepository.hello();
+    console.log(res1);
+    let res2 = this.userRepository.helloMongo();
+    let res3 = this.userRepository.helloRedis();
+    return Promise.all([res1, res2, res3]);
   }
 
 }

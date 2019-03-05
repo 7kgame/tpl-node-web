@@ -18,8 +18,10 @@ export default class User extends BaseController {
   }
 
   @Get('/process/{uid}')
-  public process ({ uid }) {
-    return '<div style="color: red">' + 'this is user process ' + uid + ', ' + this.userService.hello() + ', ' + this.payService.hello() + '</div>';
+  public async process ({ uid }) {
+    let data = await this.userService.hello();
+    console.log(data);
+    return '<div style="color: red">' + 'this is user process ' + uid + ', ' + JSON.stringify(data) + ', ' + this.payService.hello() + '</div>';
   }
 
   @Get('/list')

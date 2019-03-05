@@ -20,36 +20,46 @@ _%>
     console.log('new userRepository');
   }
 
-  public hello () {
+  public async hello () {
+    return new Promise((resolve, reject) => {
 <%_ if(datasource.indexOf('mysql') >= 0) { _%>
-    let client = this.mysql.getClient();
-    client.query("use tp5", function(err, ret) {});
-    client.query("select * from User limit 10", function(err, res) {
-      console.log(res);
-    });
+      let client = this.mysql.getClient();
+      client.query("use tp5", function(err, ret) {});
+      client.query("select * from User limit 10", function(err, res) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
+        }
+        console.log(res);
+      });
 <%_ } _%>
+    });
   }
 
-  public helloMongo () {
+  public async helloMongo () {
 <%_ if(datasource.indexOf('mongo') >= 0) { _%>
     let dbName = 'test';
     let client = this.mongo.getClient();
     const db = client.db(dbName);
     const col = db.collection('user');
-    col.find({}).toArray(function(err, items) {
-      console.log(items);
-      console.log('item', items.length);
-    });
+    return col.find({}).toArray();
 <%_ } _%>
   }
 
-  public helloRedis () {
+  public async helloRedis () {
+    return new Promise((resolve, reject) => {
 <%_ if(datasource.indexOf('redis') >= 0) { _%>
-    let client = this.redis.getClient();
-    client.get('test', (err, val) => {
-      console.log('test: ', val);
-    });
+      let client = this.redis.getClient();
+      client.get('test', (err, val) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(val);
+        }
+      });
 <%_ } _%>
+    });
   }
 
 }

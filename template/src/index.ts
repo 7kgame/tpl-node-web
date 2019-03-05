@@ -1,4 +1,4 @@
-import { Application } from 'jweb';
+import { Application, AppErrorEvent } from 'jweb';
 
 Application.create()
   .options({
@@ -6,5 +6,10 @@ Application.create()
     host: '<%= host %>',
     propertyNS: 'node-web',
   })
-  .start(__dirname);
+  .start(__dirname)
+  .then((application: Application) => { // test event
+    application.on(AppErrorEvent.REQUEST, err => {
+      console.error('app error: ', err);
+    });
+  });
 

@@ -14,7 +14,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "qk-web": "0.0.1"
+<%_ datasource.forEach(function(ds) { _%>
+    "jweb-<%- ds -%>": "0.x.x",
+<%_ }); _%>
+    "jweb": "0.x.x"
   },
   "devDependencies": {
     "@types/node": "^10.x.x",

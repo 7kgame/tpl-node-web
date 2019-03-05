@@ -23,12 +23,12 @@ module.exports = {
       message: "set port for the httpserver",
       default: 3000
     },
-    repositories: {
+    datasource: {
       type: "checkbox",
-      message: "select repositories",
+      message: "select datasource",
       choices: [
         {
-          name: "mongodb",
+          name: "mongo",
           //checked: true
         },
         {

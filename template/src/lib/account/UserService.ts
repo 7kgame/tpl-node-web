@@ -12,8 +12,8 @@ export default class UserService {
   }
   public hello (): string {
     let res = this.userRepository.hello();
-    let res = this.userRepository.helloRedis();
-    let res = this.userRepository.helloMongo();
+    this.userRepository.helloRedis();
+    this.userRepository.helloMongo();
     console.log(res);
     return 'hello userService';
   }

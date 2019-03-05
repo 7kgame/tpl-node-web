@@ -1,4 +1,4 @@
-import { Middleware, IMiddleware, Request, Response } from 'qk-web';
+import { Middleware, IMiddleware, Request, Response } from 'jweb';
 
 @Middleware
 export default class Auth implements IMiddleware {

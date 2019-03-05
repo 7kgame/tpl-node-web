@@ -1,4 +1,4 @@
-import { BaseController, Controller, Get, Post, Autowired, ResponseJSON, ResponseXML, Request, Response } from 'qk-web';
+import { BaseController, Controller, Get, Post, Autowired, ResponseJSON, ResponseXML, Request, Response } from 'jweb';
 import UserService from '../lib/account/UserService';
 import PayService from '../lib/account/PayService';
 import { Auth } from '../lib/middleware';

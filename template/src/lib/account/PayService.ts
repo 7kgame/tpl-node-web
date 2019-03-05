@@ -1,4 +1,4 @@
-import { Service, Autowired } from 'qk-web';
+import { Service, Autowired } from 'jweb';
 
 @Service
 export default class PayService {

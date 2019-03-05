@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from 'qk-web';
+import { Controller, Get, Post } from 'jweb';
 
 @Controller('/pay')
 export default class Pay {

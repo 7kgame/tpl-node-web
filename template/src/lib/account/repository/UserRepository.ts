@@ -1,4 +1,4 @@
-import { Repository, Autowired } from 'qk-web';
+import { Repository, Autowired } from 'jweb';
 <%_ datasource.forEach(function(ds) {
   ds = ds.charAt(0).toUpperCase() + ds.slice(1);
 _%>

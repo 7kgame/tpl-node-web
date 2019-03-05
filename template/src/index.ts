@@ -1,4 +1,4 @@
-import { Application } from 'qk-web';
+import { Application } from 'jweb';
 
 Application.create()
   .options({

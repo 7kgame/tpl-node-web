@@ -57,21 +57,29 @@ gulp.task('watch', shell.task([
  */
 gulp.task('configs', (cb) => {
   return gulp.src(['src/config/**/*.yml', 'src/config/**/*.json'])
-    .pipe(gulp.dest('./build/config'));
+    .pipe(gulp.dest('./build/src/config'));
 });
 
 /**
  * Copy public files
  */
-gulp.task('public', (cb) => {
-  return gulp.src('public/**/*.*')
-    .pipe(gulp.dest('./build/public'));
+gulp.task('view', (cb) => {
+  return gulp.src('src/view/**/*.*')
+    .pipe(gulp.dest('./build/src/view'));
+});
+
+/**
+ * Copy assets files
+ */
+gulp.task('assets', (cb) => {
+  return gulp.src('assets/**/*.*')
+    .pipe(gulp.dest('./build/assets'));
 });
 
 /**
  * Build the project.
  */
-gulp.task('build', gulp.series('tslint', 'compile', 'configs', 'public', (done) => {
+gulp.task('build', gulp.series('tslint', 'compile', 'configs', 'view', 'assets', (done) => {
   console.log('Building the project ...');
   done && done();
 }));

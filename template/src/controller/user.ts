@@ -1,4 +1,6 @@
-import { BaseController, Controller, Get, Post, Autowired, ResponseJSON, ResponseXML, Request, Response } from 'jweb';
+import { Controller, Get, Post, Autowired, ResponseJSON, ResponseXML, Request, Response } from 'jweb';
+
+import BaseController from './base';
 import UserService from '../lib/account/UserService';
 import PayService from '../lib/account/PayService';
 import { Auth } from '../lib/middleware';

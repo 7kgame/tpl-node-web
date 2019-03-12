@@ -61,7 +61,7 @@ gulp.task('configs', (cb) => {
 });
 
 /**
- * Copy public files
+ * Copy view files
  */
 gulp.task('view', (cb) => {
   return gulp.src('src/view/**/*.*')

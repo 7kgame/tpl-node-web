@@ -9,6 +9,7 @@
     "tsc-watch": "tsc -w",
     "build": "gulp build",
     "start": "node build/src/index.js",
+    "dev": "cross-env NODE_ENV=development node build/src/index.js",
     "setup": "npm install",
     "watch": "nodemon --watch build/ build/index.js"
   },
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@types/node": "^10.x.x",
+    "cross-env": "^5.2.0",
     "eslint": "^5.12.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",

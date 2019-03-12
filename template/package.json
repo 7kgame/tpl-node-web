@@ -18,7 +18,8 @@
 <%_ datasource.forEach(function(ds) { _%>
     "jweb-<%- ds -%>": "0.x.x",
 <%_ }); _%>
-    "jweb": "0.x.x"
+    "jweb": "0.x.x",
+    "jweb-utils": "0.x.x"
   },
   "devDependencies": {
     "@types/node": "^10.x.x",

@@ -1,8 +1,8 @@
 import { Repository, Autowired } from 'jweb';
 <%_ datasource.forEach(function(ds) {
-  ds = ds.charAt(0).toUpperCase() + ds.slice(1);
+  var ds1 = ds.charAt(0).toUpperCase() + ds.slice(1);
 _%>
-import <%- ds -%>Dao from 'jweb-<%- ds -%>';
+import <%- ds1 -%>Dao from 'jweb-<%- ds -%>';
 <%_ }); _%>
 
 @Repository

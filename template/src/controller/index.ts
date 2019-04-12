@@ -1,15 +1,15 @@
-import { BaseController, Controller, Get, Post, Autowired, ResponseJSON, ResponseXML, Request, Response } from 'jweb';
+import { BaseController, Controller, Get, Post, Autowired, ResponseJSON, ResponseXML, Request, Response } from 'jweb'
 
 @Controller('/')
 export default class Index extends BaseController {
 
   constructor () {
-    super();
+    super()
   }
 
   @Get('/')
   public index () {
-    this.templateValue('contentInfo', './header/css/main.css');
+    this.templateValue('contentInfo', './header/css/main.css')
     this.templateValue('games', [
       {
         title: '疯狂的方言'
@@ -17,8 +17,8 @@ export default class Index extends BaseController {
       {
         title: '坦克大战'
       },
-    ]);
-    return this.show('index');
+    ])
+    return this.show('index')
   }
 
 }

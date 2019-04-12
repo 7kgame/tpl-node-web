@@ -1,9 +1,9 @@
-import { Application, AppErrorEvent } from 'jweb';
-import * as Path from 'path';
+import { Application, AppErrorEvent } from 'jweb'
+import * as Path from 'path'
 
-let viewDir = 'view';
+let viewDir = 'view'
 if (process.env.NODE_ENV === 'development') {
-  viewDir = Path.join(Path.dirname(Path.dirname(__dirname)), 'src', 'view');
+  viewDir = Path.join(Path.dirname(Path.dirname(__dirname)), 'src', 'view')
 }
 
 Application.create({
@@ -16,7 +16,7 @@ Application.create({
   .start(__dirname)
   .then((application: Application) => { // test event
     application.on(AppErrorEvent.REQUEST, err => {
-      console.error('app error: ', err);
-    });
-  });
+      console.error('app error: ', err)
+    })
+  })
 

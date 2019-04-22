@@ -1,12 +1,21 @@
 {
   "apps": [{
-    "exec_mode": "cluster",
-    "instances" : 4,
+    "exec_mode"  : "cluster_mode",
+    "instances" : 2,
     "script": "./build/src/index.js",
-    "name": "type-node",
+    "name": <%= name %>,
+    "log_date_format"  : "YYYY-MM-DD",
+    "log_file"   : "/data/logs/node/<%= name %>/child.log",
+    "error_file" : "/data/logs/node/<%= name %>/child-err.log",
+    "out_file"   : "/data/logs/node/<%= name %>/child-out.log",
+    "pid_file"   : "/data/logs/node/<%= name %>/child.pid",
     "interpreter": "node",
+    "port"       : <%= port %>,
     "env": {
-      "NODE_ENV": "dev"
-    }
+      "NODE_ENV": "development"
+    },
+    "env_production": {
+      "NODE_ENV": "production"
+   }
   }]
 }

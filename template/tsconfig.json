@@ -13,6 +13,7 @@
     "src/**.ts",
     "src/controller/**/**.ts",
     "src/lib/**/**.ts",
+    "src/task/**/**.ts",
     "test/**/**.ts"
   ],
   "exclude": [

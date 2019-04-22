@@ -1,4 +1,4 @@
-import { BaseController, Controller, Get, Post, Autowired, ResponseJSON, ResponseXML, Request, Response } from 'jweb'
+import { BaseController, Controller, Get } from 'jweb'
 
 @Controller('/')
 export default class Index extends BaseController {

@@ -44,6 +44,7 @@ module.exports = {
     '*.json',
     '*.js',
     '*.ts',
+    '*.yml'
   ],
   exclude: [
   ]

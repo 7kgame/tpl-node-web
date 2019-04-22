@@ -1,9 +1,10 @@
-import { Repository, Autowired } from 'jweb'
+import { Autowired, Repository } from 'jbean'
 <%_ datasource.forEach(function(ds) {
   var ds1 = ds.charAt(0).toUpperCase() + ds.slice(1)
 _%>
 import <%- ds1 -%>Dao from 'jweb-<%- ds -%>'
 <%_ }); _%>
+import UserEntity from '../entity/user'
 
 @Repository
 export default class UserRepository {
@@ -17,24 +18,36 @@ _%>
 <%_ }); _%>
 
   constructor () {
-    console.log('new userRepository')
   }
 
-  public async hello () {
-    return new Promise((resolve, reject) => {
+  public async createUser (user: UserEntity) {
 <%_ if(datasource.indexOf('mysql') >= 0) { _%>
-      let client = this.mysql.getClient()
-      client.query("use tp5", function(err, ret) {})
-      client.query("select * from User limit 10", function(err, res) {
-        if (err) {
-          reject(err)
-        } else {
-          resolve(res)
-        }
-        console.log(res)
-      })
+    return this.mysql.insert(user)
 <%_ } _%>
-    })
+  }
+
+  public async deleteUser (condition: any) {
+<%_ if(datasource.indexOf('mysql') >= 0) { _%>
+    return this.mysql.delete(UserEntity, condition)
+<%_ } _%>
+  }
+
+  public async updateUser (user: UserEntity, condition: any) {
+<%_ if(datasource.indexOf('mysql') >= 0) { _%>
+    return this.mysql.update(user, condition)
+<%_ } _%>
+  }
+
+  public async getUsers (condition: any) {
+<%_ if(datasource.indexOf('mysql') >= 0) { _%>
+    return this.mysql.select(UserEntity, condition)
+<%_ } _%>
+  }
+
+  public async getUser (condition: object) {
+<%_ if(datasource.indexOf('mysql') >= 0) { _%>
+    return this.mysql.getEntity(UserEntity, condition)
+<%_ } _%>
   }
 
   public async helloMongo () {

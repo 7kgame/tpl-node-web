@@ -10,15 +10,17 @@
     "build": "gulp build",
     "start": "node build/src/index.js",
     "dev": "cross-env NODE_ENV=development node build/src/index.js",
+    "cron": "node build/src/index.js -t hello -m 3 -s 2",
     "setup": "npm install",
     "watch": "nodemon --watch build/ build/index.js"
   },
   "license": "MIT",
   "dependencies": {
+    "jbean": "x.x.x",
 <%_ datasource.forEach(function(ds) { _%>
-    "jweb-<%- ds -%>": "0.x.x",
+    "jweb-<%- ds -%>": "x.x.x",
 <%_ }); _%>
-    "jweb": "0.x.x",
+    "jweb": "1.x.x",
     "jweb-utils": "0.x.x"
   },
   "devDependencies": {

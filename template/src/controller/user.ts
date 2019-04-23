@@ -1,5 +1,5 @@
 import { Autowired } from 'jbean'
-import { Controller, Get, Post, ResponseBody, Request, Response, Validation } from 'jweb'
+import { Controller, Get, Post, ResponseBody, Request, Response, Transactional, Validation } from 'jweb'
 
 import BaseController from './base'
 import Auth from '../lib/annos/Auth'
@@ -8,6 +8,7 @@ import UserEntity from '../lib/account/entity/user'
 
 @Controller('/user')
 @Auth
+@Transactional
 export default class User extends BaseController {
 
   @Autowired('userService0')

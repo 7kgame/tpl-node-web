@@ -17,7 +17,7 @@ export default class UserService {
     return Promise.all([res1, res2])
   }
 
-  public async getUser (condition: object) {
+  public async getUser (condition: object): Promise<UserEntity> {
     return this.userRepository.getUser(condition)
   }
 
@@ -33,7 +33,7 @@ export default class UserService {
     return this.userRepository.updateUser(user, condition)
   }
 
-  public async getUsers (condition: object) {
+  public async getUsers (condition: object): Promise<UserEntity[]> {
     return this.userRepository.getUsers(condition)
   }
 

@@ -38,13 +38,13 @@ _%>
 <%_ } _%>
   }
 
-  public async getUsers (condition: any) {
+  public async getUsers (condition: any): Promise<UserEntity[]> {
 <%_ if(datasource.indexOf('mysql') >= 0) { _%>
     return this.mysql.select(UserEntity, condition)
 <%_ } _%>
   }
 
-  public async getUser (condition: object) {
+  public async getUser (condition: object): Promise<UserEntity> {
 <%_ if(datasource.indexOf('mysql') >= 0) { _%>
     return this.mysql.getEntity(UserEntity, condition)
 <%_ } _%>

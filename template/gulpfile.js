@@ -155,10 +155,10 @@ gulp.task('server', gulp.series('nodemon', 'bs-delay', function browserSync(done
     proxy: {
       target: 'http://localhost:3000',
       // 代理
-      middleware: [proxy([], {
+      /* middleware: [proxy([], {
         target: '',
         changeOrigin: true
-      })]
+      })] */
     },
     port: 3001,
     notify: false // 更新提示关闭

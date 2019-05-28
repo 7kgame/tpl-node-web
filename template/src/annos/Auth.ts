@@ -1,5 +1,5 @@
 import { AnnotationType, annotationHelper, BeanFactory } from 'jbean'
-import { Request, Response } from 'jweb'
+import { Request, Response } from '../lib'
 
 export default function Auth (component?: any, options?: any) {
   return annotationHelper(arguments, callback)
@@ -13,14 +13,18 @@ const callback = function (annoType: AnnotationType, ctor: object | Function) {
   }
 }
 
-Auth.preCall = function (ignore: boolean, req: Request, res: Response) {
-  if (ignore) {
-    console.log('todo return need login data')
-    // return null while stop the call chain
-    return null
+Auth.preCall = function authPreCall(ret: any, param: string, req: Request, res: Response) {
+  if (param === 'ignore') {
+    return {
+      err: "ignore",
+      data: null
+    }
   }
+  console.log('Auth preCall', ret)
+  return ret
 }
 
-Auth.postCall = function (ret: any, req: Request, res: Response) {
+Auth.postCall = function authPostCall(ret: any) {
+  console.log('Auth postCall', ret)
   return ret
 }

@@ -1,6 +1,7 @@
-import { Application, Task } from '../lib'
+import { Application, Task, Transactional } from 'jweb'
 
 @Task
+@Transactional
 export default class HelloTask {
 
   constructor () {

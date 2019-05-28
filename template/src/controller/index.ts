@@ -1,4 +1,5 @@
-import { BaseController, Controller, Get } from 'jweb'
+import { BaseController, Controller, Get } from '../lib'
+import Auth from '../annos/Auth'
 
 @Controller('/')
 export default class Index extends BaseController {
@@ -8,18 +9,8 @@ export default class Index extends BaseController {
   }
 
   @Get('/')
-  public index () {
-    this.templateValue('contentInfo', './header/css/main.css')
-    this.templateValue('games', [
-      {
-        title: '疯狂的方言'
-      },
-      {
-        title: '坦克大战'
-      },
-    ])
-    return this.show('index')
+  @Auth('this is auth for index')
+  public static index () {
+    return 'hello'
   }
-
 }
-

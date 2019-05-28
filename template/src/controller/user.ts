@@ -1,73 +1,109 @@
-import { Autowired } from 'jbean'
-import { Controller, Get, Post, ResponseBody, Request, Response, Validation } from 'jweb'
-
-import BaseController from './base'
-import Auth from '../lib/annos/Auth'
+import { Autowired, BusinessException } from 'jbean'
+import { Controller, Get, Post, Request, Response, Transactional, Validation, ValidationMode, Cache } from '../lib'
 import UserService from '../lib/account/UserService'
+import PayService from '../lib/account/PayService'
+import Auth from '../annos/Auth'
+import ResponseBody from '../annos/response_body'
 import UserEntity from '../lib/account/entity/user'
 
+import BaseController from './base'
+
 @Controller('/user')
-@Auth
+@Transactional
+// @Auth
+// @ResponseXML
 export default class User extends BaseController {
 
-  @Autowired('userService0')
+  @Autowired
   private userService: UserService
+
+  @Autowired
+  private payService: PayService
 
   constructor () {
     super()
+    console.log('init user')
   }
 
-  private beforeCall () {
-    console.log('beforeCall')
+  private preAround (ret) {
+    console.log('preAround', ret)
   }
 
-  private afterCall (ret, request: Request, response: Response) {
-    console.log('afterCall')
+  private postAround (ret) {
+    let result = {
+      status: 0,
+      data: ret.data,
+      message: null
+    }
+    if (ret.err) {
+      if (ret.err instanceof BusinessException) {
+        result.status = ret.err.code || -1
+        result.data = ret.err.data
+        result.message = ret.err.err || '系统异常'
+      } else {
+        result.status = -1
+        result.message = ret.err
+      }
+    }
+    return {
+      err: null,
+      data: result
+    }
+  }
+
+  private beforeCall (ret, req: Request, res: Response) {
+    // res.setHeader('Content-Type', 'application/json')
+    // console.log(arguments)
+    console.log('beforeCall' , ret)
     return ret
   }
 
-
-  @Get('/get/{uid}')
-  @ResponseBody('json')
-  public async getUser (req: Request, res: Response, { uid }) {
-    return this.userService.getUser({uid: uid})
+  public afterCall (ret) {
+    // console.log('aftercall', ret)
+    // ret.data = xmlEncode(ret.data)
+    // return ret
+    // if (ret.err) {
+    //   return {
+    //     status: ret.err.code || -1,
+    //     message: ret.err,
+    //     data: ret.data
+    //   }
+    // } else {
+    //   return ret
+    // }
   }
 
-  @Get('/del/{uid}')
-  @ResponseBody('json')
-  public async deleteUser (req: Request, res: Response, { uid }) {
-    return this.userService.deleteUser({uid: uid})
-  }
-
-  @Get('/edit/{uid}')
+  @Get('/process/{uid}')
+  @Auth
   @ResponseBody('json')
   @Validation(UserEntity)
-  public async editUser (req: Request, res: Response, { uid }) {
+  @Transactional
+  public async process (req: Request, res: Response, { uid }) {
+    console.log(UserService)
     const user: UserEntity = req.entity
-    return this.userService.updateUser(user, {uid: uid})
-  }
+    // throw new BusinessException('inner err', -100, null)
+    console.log('inside call', user, uid)
+    // console.log(user['toObject']())
+    // console.log('userService is', this.userService)
+    // throw new Error('hdhhsh')
+    // console.log('uid is ' + uid)
+    // return uid
+    // throw new Error('test err')
+    // let data = await this.userService.hello()
+    // return '<div style="color: red">' + 'this is user process ' + uid + ', ' + JSON.stringify(data) + ', ' + this.payService.hello() + '</div>'
+    let u = await this.userService.hello(user)
 
-  @Get('/create')
-  @ResponseBody('json')
-  @Validation(UserEntity)
-  public async createUser (req: Request, res: Response) {
-    const user: UserEntity = req.entity
-    return this.userService.createUser(user)
+    // throw new BusinessException('test Exception')
+    let data = {
+      a: 1,
+      b: [2, 3, 4],
+      uid: uid,
+      u: u
+    }
+    return data
   }
 
   @Get('/list')
-  @ResponseBody('json')
-  public async getUsers (req: Request, res: Response) {
-    const user: UserEntity = req.entity
-    const query = req.query
-    const condition = {}
-    if (query.name) {
-      condition['name'] = query.name
-    }
-    return this.userService.getUsers(condition)
-  }
-
-  @Get('/tpl')
   public list () {
     this.templateValue('contentInfo', './header/css/main.css')
     this.templateValue('uid', 1)
@@ -75,12 +111,24 @@ export default class User extends BaseController {
     return this.show('page')
   }
 
-  @Get('/xml')
-  @ResponseBody('xml')
-  @Auth(true)
+  @Get('/list2')
+  public list2 () {
+    this.templateValue('contentInfo', './header/css/main.css')
+    this.templateValue('uid', 2)
+    this.templateValue('name', '<span>tim</span>')
+    return this.show('page')
+  }
+
+  @Get('/info')
+  @ResponseBody('json')
+  @Auth
+  @Cache(1000 * 60)
+  // @ResponseXML
   public info(request: Request, response: Response) {
-    let test = new Map()
-    test.set("a", {k:1, k2: null, k3: false, k4: 'hello'})
+    // console.log('user/info exec')
+    // response.error('出错啦')
+    // return null
+    let test = {"a": {k:1, k2: null, k3: false, k4: 'hello'}}
     return test
   }
 }

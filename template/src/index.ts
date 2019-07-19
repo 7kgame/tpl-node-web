@@ -1,4 +1,4 @@
-import { Application, AppErrorEvent } from './lib'
+import { Application, AppErrorEvent } from 'jweb'
 import { JBootApplication } from 'jbean'
 
 

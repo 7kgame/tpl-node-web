@@ -1,7 +1,7 @@
 import { Type, Entity, Id } from 'jbean'
-import { Between, Regex, Required, Min, Max, Size, ValidationScene, Email } from '../../'
+import { Between, Regex, Required, Min, Max, Size, ValidationScene, Email } from 'jweb'
 
-const REGISTER_SCENE1: string = 'register1'
+const REGISTER_SCENE1: string = 'register'
 const MODIFY_SCENE2: string = 'modify'
 
 @Entity
@@ -29,7 +29,6 @@ export default class User {
     if (!supportMulti) {
       return 'user'
     }
-    // return 'user'
     return ['user_1', 'user_2']
   }
 

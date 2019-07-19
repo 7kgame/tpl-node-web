@@ -29,10 +29,10 @@ module.exports = {
       choices: [
         {
           name: "mongo",
-          //checked: true
         },
         {
           name: "mysql",
+          //checked: true
         },
         {
           name: "redis",

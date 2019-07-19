@@ -2,27 +2,23 @@ node-web:
   app:
     cors: true
     assets: assets
-    port: 8080
-    host: localhost
+    port: <%= port %>
+    host: <%= host %>
     viewDir: view
     controllerDir: controller
   cache:
     maxCacheSize: 104857600
     expire: 60000
   data:
-    #mongo: // one connection
-      # url: mongodb://localhost:27017
-      #auth:
-        #  user: ''
-        #  password: ''
-    # mongo:
-    #   -
-    #     dao: jweb-mongo
-    #     bean: primary
-    #     url: mongodb://localhost:27017
-    #     poolSize: 10
-     #-
-        #url: mongodb://localhost:27017
+<%_ if (datasource.indexOf('mongo') >= 0) { _%>
+    mongo:
+      -
+        dao: jweb-mongo
+        bean: primary
+        url: mongodb://localhost:27017
+        poolSize: 10
+<%_ } _%>
+<%_ if (datasource.indexOf('mysql') >= 0) { _%>
     mysql:
       -
         dao: jweb-mysql
@@ -34,9 +30,12 @@ node-web:
         password: 123123
         database: test
         connectionLimit: 20
-    # redis:
-    #   -
-    #     dao: jweb-redis
-    #     bean: primary
-    #     host: 127.0.0.1
-    #     port: 6379
+<%_ } _%>
+<%_ if (datasource.indexOf('redis') >= 0) { _%>
+    redis:
+      -
+        dao: jweb-redis
+        bean: primary
+        host: 127.0.0.1
+        port: 6379
+<%_ } _%>

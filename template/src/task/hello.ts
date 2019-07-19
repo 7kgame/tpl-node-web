@@ -1,4 +1,4 @@
-import { Application, Task } from '../lib'
+import { Application, Task } from 'jweb'
 
 @Task
 export default class HelloTask {

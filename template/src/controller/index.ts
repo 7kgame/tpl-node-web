@@ -1,5 +1,6 @@
-import { BaseController, Controller, Get } from '../lib'
-import Auth from '../annos/Auth'
+import { Controller, Get } from 'jweb'
+
+import BaseController from './base'
 
 @Controller('/')
 export default class Index extends BaseController {
@@ -9,7 +10,6 @@ export default class Index extends BaseController {
   }
 
   @Get('/')
-  @Auth('this is auth for index')
   public static index () {
     return 'hello'
   }

@@ -23,7 +23,7 @@
     "jweb-<%- ds -%>": "x.x.x",
 <%_ }); _%>
     "jweb": "1.x.x",
-    "jweb-utils": "0.x.x"
+    "jweb-utils": "x.x.x"
   },
   "devDependencies": {
     "@types/node": "^10.x.x",

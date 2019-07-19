@@ -1,16 +1,25 @@
 import { Autowired, Service, BusinessException, Page } from 'jbean'
-import UserDao from './repository/UserDao'
+
 import UserEntity from './entity/user'
+<%_ if (datasource.indexOf('mysql') >= 0) { _%>
 import UserRepository from './repository/UserRepository'
+<%_ } _%>
+<%_ if (datasource.indexOf('redis') >= 0) { _%>
+import UserCacheRepository from './repository/UserCacheRepository'
+<%_ } _%>
 
 @Service
 export default class UserService {
 
-  @Autowired
-  private userDao: UserDao
-
+<%_ if (datasource.indexOf('mysql') >= 0) { _%>
   @Autowired
   private userRepository: UserRepository
+<%_ } _%>
+
+<%_ if (datasource.indexOf('redis') >= 0) { _%>
+  @Autowired
+  private userCacheRepository: UserCacheRepository
+<%_ } _%>
 
   constructor () {
   }
@@ -20,14 +29,16 @@ export default class UserService {
   }
 
   public async hello (user: UserEntity) {
-    let d: UserEntity = await this.userRepository.find(user)
-    console.log('userRepository.find ', d)
-    let p: Page = await this.userRepository.searchByPage(null, 0, 2)
-    console.log('userRepository.searchByPage', p)
-    let res1 = this.userDao.hello(user)
-    let res2 = this.userDao.helloMongo()
-    let res3 = this.userDao.helloRedis()
-    return Promise.all([res1, res2, res3])
+    let ret: Page = null
+<%_ if (datasource.indexOf('redis') >= 0) { _%>
+    await this.userCacheRepository.getUser(123)
+<%_ } _%>
+<%_ if (datasource.indexOf('mysql') >= 0) { _%>
+    let u: UserEntity = await this.userRepository.find(user)
+    console.log(u)
+    ret = await this.userRepository.searchByPage(null, 0, 2)
+<%_ } _%>
+    return ret
   }
 
 }

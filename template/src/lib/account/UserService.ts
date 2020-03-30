@@ -29,7 +29,7 @@ export default class UserService {
   }
 
   public async hello (user: UserEntity) {
-    let ret: Page = null
+    let ret: Page<UserEntity> = null
 <%_ if (datasource.indexOf('redis') >= 0) { _%>
     await this.userCacheRepository.getUser(123)
 <%_ } _%>

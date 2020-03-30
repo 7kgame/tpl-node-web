@@ -1,5 +1,5 @@
 import { AnnotationType, annotationHelper, BeanFactory } from 'jbean'
-import { Request, Response } from '../lib'
+import { Request, Response } from 'jweb'
 
 export default function Auth (component?: any, options?: any) {
   return annotationHelper(arguments, callback)

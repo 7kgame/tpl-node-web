@@ -1,6 +1,5 @@
 import { AnnotationType, annotationHelper, BeanFactory } from 'jbean'
-import { Request, Response } from '../lib/base'
-import { jsonEncode, xmlEncode } from '../lib/utils'
+import { Request, Response, jsonEncode, xmlEncode } from 'jweb'
 
 export default function ResponseBody (type: string) {
   return annotationHelper(arguments, callback)
